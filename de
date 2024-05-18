@@ -1,0 +1,63 @@
+  # 更新一下欲输出的markdown文本
+    markdown_content += content
+    # 每个步骤完成后，保存markdown文件，以便防止程序出错时能够保存到最新的数据
+    with open('{}的个人QQ历史报告.md'.format(bot.qq_number), 'w', encoding='utf-8') as file:
+        file.write(markdown_content)
+
+
+
+
+
+    # 获取过去30天内退出的群名单
+    custom_print(u'正在获取该账户过去30天退出的群...')
+    data = bot.get_quit_of_group()
+    delete_group_count = 0
+    # content为markdown语法文本
+    content = '\n\n<br/><br/>\n' + '## 过去30天内我退出的群\n'
+    if 'ls' in data.keys():
+        delete_group_count = len(data['ls'])
+    content += '过去30天内，我退出的群个数为**{}**个'.format(delete_group_count)
+
+    if(delete_group_count > 0):
+        content += '，它们分别是：\n' + '序号|群名|群号|退出时间\n:- | :-| :-| :-\n'
+        for index, group in enumerate(data['ls']):
+            timeStamp = int(group['t'])
+            timeArray = time.localtime(timeStamp)
+            otherStyleTime = time.strftime("%Y--%m--%d %H:%M:%S", timeArray)
+
+            content += '{}|{}|{}|{}\n'.format(str(index),group['n'],group['gc'],otherStyleTime)
+
+    content += '\n\n'
+    # 更新一下欲输出的markdown文本
+    markdown_content += content
+    # 每个步骤完成后，保存markdown文件，以便防止程序出错时能够保存到最新的数据
+    with open('{}的个人QQ历史报告.md'.format(bot.qq_number), 'w', encoding='utf-8') as file:
+        file.write(markdown_content)
+
+
+
+
+
+
+    # 获取过去364天内删除的好友名单
+    custom_print(u'正在获取该账户过去12个月删除的好友名单...')
+    delete_friend_list = bot.get_delete_friend_in_360day()
+    delete_friend_count = len(delete_friend_list)
+    # content为markdown语法文本
+    content = '\n\n<br/><br/>\n' + '## 过去364天内我删除的好友\n'
+    content += '过去364天内，我删除的好友个数为**{}**个'.format(delete_friend_count)
+    if(delete_friend_count > 0):
+        content += '，它们分别是：\n' + '序号|Q号\n:- | :-\n'
+        for index, qq_number in enumerate(delete_friend_list):
+            content += '{}|{}\n'.format(str(index),str(qq_number))
+
+    content += '\n\n'
+    # 更新一下欲输出的markdown文本
+    markdown_content += content
+    # 每个步骤完成后，保存markdown文件，以便防止程序出错时能够保存到最新的数据
+    with open('{}的个人QQ历史报告.md'.format(bot.qq_number), 'w', encoding='utf-8') as file:
+        file.write(markdown_content)
+
+
+
+
