@@ -1,0 +1,21 @@
+# 定义了一个函数save_to_images(img_info_list)，用于保存图片到本地。
+# 首先创建一个目录"directory"，如果目录不存在的话。然后遍历图片信息列表，
+# 依次下载每个图片并保存到目录中，图片的文件名为标题加上".jpg"后缀。
+def save_to_images(img_info_list):
+    dir_path = 'directory'
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+    for img_info in img_info_list:
+        img_path = os.path.join(dir_path, img_info['title'] + '.jpg')
+        res = requests.get(img_info['img_url'])
+        res_img = res.content
+        with open(img_path, 'wb') as f:
+            f.write(res_img)
+        # exit()
+ 
+#在主程序中，设置了要爬取的URL，并调用前面定义的函数来执行爬取、解析和保存操作。
+if __name__ == '__main__':
+    url = 'https://www.douyu.com/gapi/rknc/directory/yzRec/1'
+    html = get_html(url)
+    img_info_list = parse_html(html)
+    save_to_images(img_info_list)
