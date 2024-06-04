@@ -1,0 +1,56 @@
+namespace QQ_2021
+{
+    partial class QQ
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QQ));
+            this.btn关闭 = new System.Windows.Forms.PictureBox();
+            this.notQQ = new System.Windows.Forms.NotifyIcon(this.components);
+            this.conQQ = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.关于我们ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.开发工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.联系我们ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.还原ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关闭ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.btn关闭)).BeginInit();
+            this.conQQ.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // btn关闭
+            // 
+            this.btn关闭.Image = ((System.Drawing.Image)(resources.GetObject("btn关闭.Image")));
+            this.btn关闭.Location = new System.Drawing.Point(253, 0);
+            this.btn关闭.Name = "btn关闭";
+            this.btn关闭.Size = new System.Drawing.Size(30, 30);
+            this.btn关闭.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btn关闭.TabIndex = 2;
+            this.btn关闭.TabStop = false;
+            this.btn关闭.Click += new System.EventHandler(this.btn关闭_Click);
+            // 
+    
