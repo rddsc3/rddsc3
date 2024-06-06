@@ -1,0 +1,9 @@
+ data: {
+    imgUrls:[
+   '/images/images/timg1.jpg',
+   '/images/images/timg2.jpg',
+   '/images/images/timg3.jpg',
+   '/images/images/timg4.jpg',
+   
+    ]
+  }
