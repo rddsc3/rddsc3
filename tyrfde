@@ -1,0 +1,34 @@
+
+                    self.clear_tree(self.treeview_play_online)
+                    s = response
+                    name = findall(r'<a class="playBtn" data-cn="(.*?)" data-impression-track', s)
+                    down_url = findall(r'data-cn=".*?" href="(.*?)" target=', s)
+
+                    res_list = []
+                    for i in range(len(name)):
+                        res_list.append([name[i], "限VIP免费", down_url[i]])
+                    self.add_tree(res_list, self.treeview_play_online)
+
+                    self.clear_tree(self.treeview_save_cloud_disk)
+                    res_list = []
+                    res_list.append(["56网盘搜索", "有效", "https://www.56wangpan.com/search/o2kw" + quote(movie['title'])])
+                    res_list.append(["爱搜资源", "有效", "https://www.aisouziyuan.com/?name=" + quote(movie['title']) + "&page=1"])
+                    res_list.append(["盘多多", "有效", "http://www.panduoduo.net/s/comb/n-" + quote(movie['title']) + "&f-f4"])
+                    res_list.append(["小白盘", "有效", "https://www.xiaobaipan.com/list-" + quote(movie['title']) + "-1.html" ])
+                    res_list.append(["云盘精灵", "有效", "https://www.yunpanjingling.com/search/" + quote(movie['title']) + "?sort=size.desc"])
+                    self.add_tree(res_list, self.treeview_save_cloud_disk)
+
+                    self.clear_tree(self.treeview_bt_download)
+                    res_list = []
+                    res_list.append(['19影视', '有效', 'https://www.19kan.com/vodsearch.html?wd=' + quote(movie['title'])])
+                    res_list.append(['2TU影院', '有效', 'http://www.82tu.cc/search.php?submit=%E6%90%9C+%E7%B4%A2&searchword=' + quote(movie['title'])])
+                    res_list.append(['4K电影', '有效', 'https://www.dygc.org/?s=' + quote(movie['title'])])
+                    res_list.append(['52 Movie', '有效', 'http://www.52movieba.com/search.htm?keyword=' + quote(movie['title'])])
+                    res_list.append(['592美剧', '有效', 'http://www.592meiju.com/search/?wd=' + quote(movie['title'])])
+                    res_list.append(['97电影网', '有效', 'http://www.55xia.com/search?q=' + quote(movie['title'])])
+                    res_list.append(['98TVS', '有效', 'http://www.98tvs.com/?s=' + quote(movie['title'])])
+                    res_list.append(['9去这里', '有效', 'http://9qzl.com/index.php?s=/video/search/wd/' + quote(movie['title'])])
+                    res_list.append(['CK电影', '有效', 'http://www.ck180.net/search.html?q=' + quote(movie['title'])])
+                    res_list.append(['LOL电影', '有效', 'http://www.993dy.com/index.php?m=vod-search&wd=' + quote(movie['title'])])
+                    res_list.append(['MP4Vv', '有效', 'http://www.mp4pa.com/search.php?searchword=' + quote(movie['title'])])
+                    res_list.append(['MP4电影', '有效', 'http://www.domp4.com/search/' + quote(movie['title']) + '-1.html'])
