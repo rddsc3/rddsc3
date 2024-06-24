@@ -1,0 +1,71 @@
+
+    // 查找用户是否已经加入过该房间
+    let oldUser = await ImRoomMember.findOne({
+      im_room_id: room_id,
+      author_id: user_id,
+    });
+    if (!oldUser) {
+      let res = await new ImRoomMember({
+        im_room_id: room_id,
+        author_id: user_id,
+        author_type: 2,
+        created_time: getCurrentTimer(),
+        updated_time: getCurrentTimer(),
+        status: 1,
+        socket_id: socket.id,
+      }).save();
+
+      if (!res) {
+        resMsg("加入房间失败", 400);
+        return;
+      }
+    } else {
+      await ImRoomMember.updateOne(
+        { im_room_id: room_id, author_id: user_id },
+        { socket_id: socket.id, status: 1 }
+      );
+    }
+
+    // 这是触发的方法数组，默认只有im的人员信息变化
+    const funStatus = ["members_change"];
+
+    // 对于五子棋游戏相关加入房间操作
+    if (gobang_id) {
+      let game = await Gobang.findOne({ _id: gobang_id });
+      if (!game) {
+        resMsg("游戏不存在", 400);
+        return;
+      }
+
+      // 查找用户是否已经加入过该游戏
+      let oldUser = await GobangMember.findOne({
+        gobang_id,
+        author_id: user_id,
+      });
+
+      if (!oldUser) {
+        let res = await new GobangMember({
+          gobang_id,
+          author_id: user_id,
+          created_time: getCurrentTimer(),
+          updated_time: getCurrentTimer(),
+          status: 1,
+          socket_id: socket.id,
+          user_type: "3",
+        }).save();
+
+        if (!res) {
+          resMsg("加入游戏失败", 400);
+          return;
+        }
+      } else {
+        try {
+          await GobangMember.updateOne(
+            { gobang_id, author_id: user_id },
+            { socket_id: socket.id, status: 1 }
+          );
+        } catch (error) {
+          console.log("err", err);
+        }
+      }
+
