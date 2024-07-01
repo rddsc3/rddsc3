@@ -1,0 +1,52 @@
+MainWindow::~MainWindow()
+{
+}
+ 
+void MainWindow::videoLayout()
+{
+    /* 设置位置与大小,这里固定为800, 480 */
+    this->setGeometry(0, 0, 800, 480);
+    //    this->setMinimumSize(800, 480);
+    //    this->setMaximumSize(800, 480);
+    QPalette pal;
+    pal.setColor(QPalette::WindowText, Qt::white);
+ 
+    for (int i = 0; i < 3; i++) {
+        /* 水平容器 */
+        hWidget[i] = new QWidget();
+        hWidget[i]->setAutoFillBackground(true);
+        /* 水平布局 */
+        hBoxLayout[i] = new QHBoxLayout();
+    }
+ 
+    for (int i = 0; i < 2; i++) {
+        /* 垂直容器 */
+        vWidget[i] = new QWidget();
+        vWidget[i]->setAutoFillBackground(true);
+        /* 垂直布局 */
+        vBoxLayout[i] = new QVBoxLayout();
+    }
+ 
+    for (int i = 0; i < 2; i++) {
+        label[i] = new QLabel();
+    }
+ 
+    for (int i = 0; i < 5; i++) {
+        pushButton[i] = new QPushButton();
+        pushButton[i]->setMaximumSize(44, 44);
+        pushButton[i]->setMinimumSize(44, 44);
+    }
+ 
+    /* 设置 */
+    vWidget[0]->setObjectName("vWidget0");
+    vWidget[1]->setObjectName("vWidget1");
+    hWidget[1]->setObjectName("hWidget1");
+    hWidget[2]->setObjectName("hWidget2");
+    pushButton[0]->setObjectName("btn_play");
+    pushButton[1]->setObjectName("btn_next");
+    pushButton[2]->setObjectName("btn_volumedown");
+    pushButton[3]->setObjectName("btn_volumeup");
+    pushButton[4]->setObjectName("btn_screen");
+ 
+    QFont font;
+ 
