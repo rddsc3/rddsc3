@@ -1,0 +1,107 @@
+<template>
+  <div class="login-background">
+    <div class="login-container">
+      <el-card class="box-card" style="opacity: 0.9;">
+        <h2>登录</h2>
+        <el-form
+          :model="ruleForm"
+          status-icon
+          :rules="rules"
+          ref="ruleForm"
+          label-position="left"
+          label-width="70px"
+          class="login-form"
+        >
+          <el-form-item label="用户名" prop="uname">
+            <el-input v-model="ruleForm.uname"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input
+              type="password"
+              v-model="ruleForm.password"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="btn-group">
+          <el-button type="primary" @click="submitForm('ruleForm')"
+            >登录</el-button
+          >
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <router-link to="/register">
+            <el-button style="margin-left:10px">注册</el-button>
+          </router-link>
+        </div>
+      </el-card>
+    </div>
+  </div>
+</template>
+ 
+<script>
+import axios from 'axios';
+ 
+export default {
+  data() {
+    return {
+      ruleForm: {
+        uname: "",
+        password: "",
+      },
+      rules: {
+        uname: [
+          { required: true, message: "用户名不能为空！", trigger: "blur" },
+        ],
+        password: [
+          { required: true, message: "密码不能为空！", trigger: "blur" },
+        ],
+      },
+    };
+  },
+  methods: {
+    async submitForm(formName) {
+      try {
+        const response = await axios.post('http://127.0.0.1:8005/user/login/', this.ruleForm);
+        // 在这里处理后端响应
+        console.log(response.data);
+        if (response.data.success) {
+          sessionStorage.setItem('username', JSON.stringify(response.data))
+          // 登录成功，跳转到 Index 页面
+          this.$router.push('/components/News');
+        } else {
+          // 登录失败，显示错误消息或其他处理
+          console.error('登录失败:', response.data.message);
+        }
+      } catch (error) {
+        console.error('提交表单时发生错误:', error);
+      }
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+  },
+};
+</script>
+ 
+<style scoped>
+.login-background {
+  background-image: url('https://pic4.zhimg.com/v2-b730c73ebd78bd5f22293aab0d343f4b_r.jpg?source=1940ef5c');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.box-card {
+  width: 400px;
+}
+ 
+.login-form {
+  margin: auto;
+}
+ 
+.btn-group {
+  margin-top: 20px;
+}
+</style>
