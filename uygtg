@@ -1,0 +1,24 @@
+# 使用这个全局变量,来管理所有学生的信息.
+students = []
+
+
+def insert():
+    print('[新增学生] 开始!')
+    studentId = input('请输入学生的学号:')
+    name = input('请输入学生的姓名:')
+    gender = input('请输入学生的性别:')
+    if gender not in ('男', '女'):
+        print('性别输入的内容不符合要求,新增失败!')
+        return
+    className = input('请输入学生的班级:')
+    # 使用一个字典把上述的信息给聚合起来.
+    student = {
+        'studentId': studentId,
+        'name': name,
+        'gender': gender,
+        'className': className
+    }
+    # 将上述信息添加到全局变量students列表中
+    global students
+    students.append(student)
+    print('[新增学生] 完毕!')
