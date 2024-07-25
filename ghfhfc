@@ -1,0 +1,14 @@
+export declare class Scroller {
+  scrollTo(value: {
+    xOffset: number | string, yOffset: number | string, animation?: { duration: number, curve: Curve }
+  });
+  scrollEdge(value: Edge);
+  scrollPage(value: { next: boolean, direction?: Axis });
+  currentOffset();
+  scrollToIndex(value: number);
+}
+declare class ScrollAttribute<T> extends CommonMethod<T> {
+  onScroll(event: (xOffset: number, yOffset: number) => void): T;
+  onScrollEdge(event: (side: Edge) => void): T;
+  onScrollEnd(event: () => void): T;
+}
